@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기록문</title>
+    <style>
+        body{
+            font-weight: bold;
+        }
+        h2{
+            background-color: aqua;
+        }
+        .codeTab{
+            margin-left:15px; 
+            font-size: 15px;
+            font-weight: bold;
+            color:mediumblue;
+        }
+        h3{
+            border-bottom: solid 2px brown;
+            width: 400px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>
+    2022-05-25
+    </h2>
+    
+    node.js 설치 <br>
+    npm 설치
+    <p>
+    1. node.js sever 구축하기 
+    </p>
+    npm init -> package.json -> npm install express 
+    
+    <h2>
+        2022-05-26
+    </h2>
+    <p>
+        package 및 npm 이후 index.js 생성
+    </P>
+    <div style="margin-left:15px; font-size: 15px;font-weight: bold;color:mediumblue;">
+        <h3>index.js의 내용</h3>
+        <p>
+        var express = require("express");<br>
+        var app = express();</p>
+        <p>
+        app.set('views',__dirname + '/views');<br>
+        app.set('view engine','ejs');
+        </p>
+        <p>
+        app.use(express.json());<br>
+        app.use( express.urlencoded({ extended:false }) );
+        </p>
+        <p>
+        app.get('/',function(req,res){<br>
+            res.render('index');<br>
+        });</p>
+
+
+        <p>
+        var server = app.listen(3000,function(){<br>
+            console.log("Server start");<br>
+        });
+    </div>
+
+    <p>
+        <p>
+        서버에 보낸 입력값을 받고 싶은경우 : req.query<br>
+        id 값만 받고 싶은경우 : req.query.id ( var _id = req.query.id 식으로 변수 저장 가능 )
+        </p>
+        입력 받은 id값이 조건과 같아야 할 경우 : 
+        <div style="margin-left:15px; font-size: 15px;font-weight: bold;color:mediumblue;">
+            app.get('/second',function(req,res){<br>
+                
+                var _id = req.query.id;
+                <p>
+                if (_id == 'test'){<br>
+                 res.render('second');<br>
+                }else{<br>
+                    res.redirect('/');<br>
+                }<br>
+                });
+                </p>
+        </div>
+    </p>
+    html 안에서 스크립트   문을 사용할경우 :<% %>를 사용
+
+    <!--  추후에 추가 할 것
+    <script src="http://code.jquery.com/jquery-latest.js">
+    </script>
+
+    ajax 수행문
+
+    append 추가하다
+    find 찾다 
+    wrap 감싸다
+    remove 지우다
+    replaceAll 수정하다
+    toggleClass 클래스의 유무 변환
+    keyup 입력이 끝났을 때 -->
+
+
+    <h2>cmd 관련 명령문</h2>
+    <p>
+        <h3>서버 실행 :</h3> 터미널 -> node index.js<br>
+        <h3>CMD 주소 복사 :</h3> cd (경로복사), 터미널 초기화: Ctrl + c<br>
+        <h3>자동 초기화 및 서버실행 방법:</h3> npm i nodemon -g -> package.json에서<br>
+        <div class="codeTab">
+        "scripts": {<br>
+            "test": "echo \"Error: no test specified\" && exit 1"<br>
+          },
+        </div>
+        ▽
+        <div class="codeTab">
+          "scripts": {<br>
+            "test": "echo \"Error: no test specified\" && exit 1",<br>
+            "start":"nodemon index.js"<br>
+          },
+        </div>
+        처럼 변경
+    </p>
+</body>
+</html>
